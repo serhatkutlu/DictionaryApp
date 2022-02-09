@@ -4,10 +4,10 @@ import android.util.Log
 import com.msk.dictionaryapp.feature.domain.model.Definition
 
 data class DefinitionDTO(
-    val antonyms: List<String>,
-    val definition: String,
+    val antonyms: List<String?>,
+    val definition: String?,
     val example: String?,
-    val synonyms: List<String>
+    val synonyms: List<String?>
 ){
     fun toDefinition():Definition{
 

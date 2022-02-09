@@ -6,17 +6,19 @@ import com.msk.dictionaryapp.feature.domain.model.wordInfo
 
 data class wordInfoDTO(
     val meanings: List<MeaningDTO>,
-    val origin: String,
-    val phonetic: String,
-    val phonetics: List<PhoneticDTO>,
+    val origin: String?,
+    val phonetic: String?,
+    val phonetics: List<PhoneticDTO?>,
     val word: String
 ){
     fun toWordInfoEntity():WordInfoEntity{
 
+        val meaning = meanings.map {
+             it.toMeaning() }
 
-        val a=WordInfoEntity(meanings = meanings.map { it.toMeaning() }, origin = origin, phonetic = phonetic, word = word)
+        return WordInfoEntity(meanings = meaning, origin = origin, phonetic = phonetic, word = word)
 
-        return a
+
 
     }
 }

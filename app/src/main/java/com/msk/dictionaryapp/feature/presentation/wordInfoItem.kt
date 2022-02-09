@@ -21,25 +21,22 @@ fun wordInfoItem(
     modifier: Modifier = Modifier
 ) {
     Column(modifier=modifier) {
-        Text(text = wordInfo.word, fontSize = 24.sp, fontWeight = FontWeight.Bold, color = Color.Black)
-        Text(text = wordInfo.phonetic, fontWeight = FontWeight.Light)
+        Text(text = wordInfo.word ?: "none", fontSize = 24.sp, fontWeight = FontWeight.Bold, color = Color.Black)
+        Text(text = wordInfo.phonetic ?: "none", fontWeight = FontWeight.Light)
         Spacer(modifier=Modifier.height(16.dp))
-        Text(text = wordInfo.origin)
+        Text(text = wordInfo.origin ?: "none")
         
         wordInfo.meanings.forEach{
-            Text(text = it.partOfSpeech, fontWeight = FontWeight.Bold)
+            Text(text = it.partOfSpeech ?: "none"  , fontWeight = FontWeight.Bold)
             it.definition.forEachIndexed{index,definition->
-                Text(text = "${index+1}.${definition.definition}")
+                Text(text = "${index+1}.${definition.definition} ")
                 Spacer(modifier =Modifier.height(8.dp))
                 definition.example?.let{exam->
                     Text(text = "Example: $exam")
 
-                }
+                }}
                 Spacer(modifier = Modifier.height(8.dp))
 
-            }
+            }}
             Spacer(modifier = Modifier)
         }
-    }
-
-}

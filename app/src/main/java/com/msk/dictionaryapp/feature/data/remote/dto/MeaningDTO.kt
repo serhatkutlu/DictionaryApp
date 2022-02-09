@@ -6,7 +6,7 @@ import com.msk.dictionaryapp.feature.domain.model.Meaning
 
 data class MeaningDTO(
     val definitions: List<DefinitionDTO>,
-    val partOfSpeech: String
+    val partOfSpeech: String?
 ){
     fun toMeaning():Meaning{
 

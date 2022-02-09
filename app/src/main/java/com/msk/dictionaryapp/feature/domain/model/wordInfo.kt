@@ -4,7 +4,7 @@ import com.msk.dictionaryapp.feature.data.remote.dto.MeaningDTO
 import com.msk.dictionaryapp.feature.data.remote.dto.PhoneticDTO
 
 data class wordInfo(val meanings: List<Meaning>,
-                    val origin: String,
-                    val phonetic: String,
+                    val origin: String?,
+                    val phonetic: String?,
                     val word: String) {
 }

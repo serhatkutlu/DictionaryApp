@@ -17,11 +17,11 @@ class wordInfoRepositoryImpl(
 ):WordInfoRepository{
     override fun getwordInfo(word: String): Flow<Resource<List<wordInfo>>> = flow {
         emit(Resource.Loading())
+        Log.d("serhat","14")
         val wordinfo=dao.getWordInfos(word).map{it.toWordInfo()}
         emit(Resource.Loading(data = wordinfo))
 
         try {
-
             val remoteWordsInfo=api.getwordInfo(word)
             dao.deleteWord(remoteWordsInfo.map { it.word })
             val info=remoteWordsInfo.map { it.toWordInfoEntity() }
