@@ -1,5 +1,6 @@
 package com.msk.dictionaryapp.feature.presentation
 
+import android.util.Log
 import androidx.compose.runtime.State
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
@@ -29,7 +30,7 @@ class wordInfoViewModel @Inject constructor(
     val state:State<wordInfoState> = _state
 
     private val _eventFlow = MutableSharedFlow<UIEvent>()
-    val event= _eventFlow.asSharedFlow()
+    val eventFlow= _eventFlow.asSharedFlow()
 
     private var searchjob:Job?=null
 
@@ -41,18 +42,22 @@ class wordInfoViewModel @Inject constructor(
             getwordInfo(query).onEach {
                 when(it){
                     is Resource.Succes->{
+
                         _state.value=state.value.copy(
                             it.data ?: emptyList(),
                             false
                         )
+
                     }
                     is Resource.Loading->{
+
                         _state.value=state.value.copy(
                             it.data ?: emptyList(),
                             false
                         )
                     }
                     is Resource.Error->{
+
                         _state.value=state.value.copy(
                             it.data ?: emptyList(),
                             false

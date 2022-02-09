@@ -6,7 +6,7 @@ import retrofit2.http.Path
 
 interface DictionaryApi {
 
-    @GET("entries/en/{word}")
+    @GET("/api/v2/entries/en/{word}")
     suspend fun getwordInfo(
         @Path("word")
         word:String

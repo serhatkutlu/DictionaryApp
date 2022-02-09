@@ -1,5 +1,6 @@
 package com.msk.dictionaryapp.feature.data.remote.dto
 
+import android.util.Log
 import com.msk.dictionaryapp.feature.domain.model.Definition
 
 data class DefinitionDTO(
@@ -8,12 +9,11 @@ data class DefinitionDTO(
     val example: String?,
     val synonyms: List<String>
 ){
-    fun toDefinition(): Definition{
-        return Definition(
-            antonyms = antonyms,
-            definition = definition,
-            example=example,
-            synonyms=synonyms
-        )
+    fun toDefinition():Definition{
+
+
+        val a= Definition(antonyms = antonyms, definition = definition, example=example, synonyms=synonyms)
+
+        return a
     }
 }

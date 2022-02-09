@@ -4,6 +4,7 @@ import android.app.Application
 import androidx.room.Room
 import com.google.gson.Gson
 import com.msk.dictionaryapp.feature.data.Util.GsonParser
+import com.msk.dictionaryapp.feature.data.local.Converter
 import com.msk.dictionaryapp.feature.data.local.WordInfoDAO
 import com.msk.dictionaryapp.feature.data.local.wordInfoDatabase
 import com.msk.dictionaryapp.feature.data.remote.DictionaryApi
@@ -14,6 +15,7 @@ import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
+
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import javax.inject.Singleton
@@ -40,7 +42,7 @@ object wordInfoModule {
     ):WordInfoDAO{
         val database=Room.databaseBuilder(
             context,wordInfoDatabase::class.java,"wordDB")
-            .addTypeConverter(GsonParser(Gson()))
+            .addTypeConverter(Converter(GsonParser(Gson())))
             .build()
         return database.dao
     }
@@ -48,7 +50,7 @@ object wordInfoModule {
     @Singleton
     fun provideDictionaryApi():DictionaryApi{
         return Retrofit.Builder()
-            .baseUrl("https://api.dictionaryapi.dev/api/v2/")
+            .baseUrl("https://api.dictionaryapi.dev")
             .addConverterFactory(GsonConverterFactory.create())
             .build()
             .create(DictionaryApi::class.java)

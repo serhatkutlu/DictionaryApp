@@ -1,5 +1,6 @@
 package com.msk.dictionaryapp.feature.data.remote.dto
 
+import android.util.Log
 import com.msk.dictionaryapp.feature.data.local.entity.WordInfoEntity
 import com.msk.dictionaryapp.feature.domain.model.wordInfo
 
@@ -10,7 +11,12 @@ data class wordInfoDTO(
     val phonetics: List<PhoneticDTO>,
     val word: String
 ){
-    fun toWordInfoEntitiy():WordInfoEntity{
-        return WordInfoEntity(meanings.map { it.toMeaning() }, origin,phonetic, word)
+    fun toWordInfoEntity():WordInfoEntity{
+
+
+        val a=WordInfoEntity(meanings = meanings.map { it.toMeaning() }, origin = origin, phonetic = phonetic, word = word)
+
+        return a
+
     }
 }
